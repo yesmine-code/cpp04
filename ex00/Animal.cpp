@@ -13,7 +13,7 @@ Animal::~Animal(void){
      std::cout<<"animal destructor called !!"<<std::endl;
 }
 
-std::string Animal::getType(void) const{
+const std::string &Animal::getType(void){
     return(this->type);
 }
 
