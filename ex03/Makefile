@@ -1,5 +1,5 @@
 NAME	= Interfaces
-SRCS	=	main.cpp Amateria.cpp
+SRCS	=	main.cpp AMateria.cpp Character.cpp MateriaSource.cpp Ice.cpp Cure.cpp
 
 INCLUDES =
 

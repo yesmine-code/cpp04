@@ -1,17 +1,18 @@
 #ifndef CURE_HPP
 # define CURE_HPP
 
-#include "Amateria.hpp"
+#include "AMateria.hpp"
 
-class Cure{
+class Cure : public AMateria{
 private:
-	std::string type const;
 public:
 	Cure(void);
 	Cure(const Cure &src);
 	virtual ~Cure(void);
 	Cure &operator=(Cure const & cure);
 	std::string const &getType() const;
+	AMateria *clone(void) const;
+	void use(ICharacter& target);
 };
 
 
