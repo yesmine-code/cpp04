@@ -19,25 +19,23 @@ Character::Character( const std::string &name )
 
 Character::Character( Character const & src )
 {
-	std::cout << "Character Copy constructor called" << std::endl;
 	*this = src;
+	std::cout << "Character Copy constructor called" << std::endl;
 	return;
 }
 
-Character::~Character( void )
-{
+Character::~Character( void ){
 	std::cout << "Destructor for Character called" << std::endl;
 	return;
 }
 
-Character &	Character::operator=( Character const & src )
-{
+Character &	Character::operator=( Character const & src ){
 	this->index = 0;
 	for (int i = 0; i < 4; i++){
-		if (this->inventory[i])
+		if (this->inventory[i] != NULL)
 			delete this->inventory[i];
 		this->inventory[i] = src.inventory[i];
-		if (src.inventory[i])
+		if (src.inventory[i] != NULL)
 			this->index++;
 	}
 	this->name = src.getName();
@@ -49,16 +47,12 @@ std::string const	&Character::getName() const{
 	return (this->name);
 }
 
-void	Character::equip(AMateria* m)
-{
-	if (this->index < 4)
-	{
+void	Character::equip(AMateria* m){
+	if (this->index < 4){
 		this->inventory[this->index] = m;
 		this->index++;
-		std::cout << "Equipped a " << m->getType() << std::endl;
 	}
-	else
-		std::cout << "Couldn't equip a " << m->getType() << ", no more space"<< std::endl;
+	//else print cannot equip more than 4 materia but in subject (do not do anything so nothing to print :D
 }
 
 void	Character::unequip(int idx){
@@ -68,19 +62,19 @@ void	Character::unequip(int idx){
 	this->inventory[i] = NULL;
 }
 
-void	Character::use(int idx, ICharacter& target)
-{
-	this->inventory[idx]->use(target);
-	this->unequip(idx);
+void	Character::use(int idx, ICharacter& target){
+	if (this->inventory[idx] != NULL) {
+		this->inventory[idx]->use(target);
+		this->unequip(idx);
+	}
 }
 
-void	Character::printInventory( void ) const
+void	Character::printCharacter( void ) const
 {
-	for (int i = 0; i < 4; i++)
-	{
+	for (int i = 0; i < 4; i++){
 		if (this->inventory[i])
-			std::cout << i << ": " << this->inventory[i] << std::endl;
+			std::cout <<"inventory "<< i << " = " << this->inventory[i] << std::endl;
 		else
-			std::cout << i << ": Empty" << std::endl;
+			std::cout <<"inventory "<< i << " = NULL" << std::endl;
 	}
 }

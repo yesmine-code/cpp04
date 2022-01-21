@@ -16,8 +16,7 @@ MateriaSource::MateriaSource(MateriaSource const & src){
 
 MateriaSource::~MateriaSource( void )
 {
-	for (int i = 0; i < 4; i++)
-	{
+	for (int i = 0; i < 4; i++){
 		if (this->materias[i] != NULL)
 			delete this->materias[i];
 	}
@@ -25,8 +24,7 @@ MateriaSource::~MateriaSource( void )
 	return;
 }
 
-MateriaSource &MateriaSource::operator=( MateriaSource const & src )
-{
+MateriaSource &MateriaSource::operator=( MateriaSource const & src ){
 	for (int i = 0; i < 4; i++){
 		if (this->materias[i] != NULL)
 			delete this->materias[i];
@@ -35,7 +33,7 @@ MateriaSource &MateriaSource::operator=( MateriaSource const & src )
 		else
 			this->materias[i] = NULL;
 	}
-	std::cout << "MateriaSourceAssignement operator is called" << std::endl;
+	std::cout << "MateriaSource Assignement operator is called" << std::endl;
 	return *this;
 }
 
@@ -43,8 +41,7 @@ void		MateriaSource::learnMateria(AMateria *amat)
 {
 	if (this->index >= 4)
 		std::cout << "MateriaSource can know at most 4 Materias." << std::endl;
-	else
-	{
+	else{
 		this->materias[this->index] = amat;
 		this->index++;
 		std::cout << "Learned " << amat->getType() << " Materia"<< std::endl;
@@ -53,21 +50,18 @@ void		MateriaSource::learnMateria(AMateria *amat)
 
 AMateria	*MateriaSource::createMateria(std::string const & type)
 {
-	for (int i = 0; i < 4 && this->materias[i]; i++)
-	{
+	for (int i = 0; i < 4 && this->materias[i]; i++){
 		if (type == this->materias[i]->getType())
 			return this->materias[i]->clone();
 	}
-	return NULL;
+	return 0;
 }
 
-void		MateriaSource::printMaterias( void ) const
-{
-	for (int i = 0; i < 4; i++)
-	{
+void		MateriaSource::printMaterias( void ) const{
+	for (int i = 0; i < 4; i++){
 		if (this->materias[i] != NULL)
-			std::cout << i << ": " << this->materias[i]->getType() << std::endl;
+			std::cout <<"materia "<< i << " = " << this->materias[i]->getType() << std::endl;
 		else
-			std::cout << i << ": Empty" << std::endl;
+			std::cout <<"materia "<< i << " = NULL" << std::endl;
 	}
 }

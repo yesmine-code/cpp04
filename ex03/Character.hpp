@@ -16,8 +16,7 @@ public:
 	virtual void				equip(AMateria* m);
 	virtual void				unequip(int idx);
 	virtual void				use(int idx, ICharacter& target);
-
-	virtual void		printInventory( void ) const ;
+	virtual void		printCharacter( void ) const ;
 
 private:
 
